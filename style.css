@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;800&display=swap');
+*{
+    font-family: 'Open Sans', sans-serif;
+    /* background-color: #000; */
+}
+    
+.fundoClaro{
+    background-color: white;
+}
+
+.fundoEscuro{
+    background-color: black;
+}
+
+h1{
+    text-align: center;
+}
+
+.container {
+    max-width: 420px;
+    margin: 10vh auto 0 auto;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    margin: 1rem;
+}
+
+.outterContainer {
+    padding: 0.5rem;
+    border: 1px solid black;
+    border-radius: 1rem;
+    max-width: 450px;
+    margin: 10vh auto 0 auto;
+    box-shadow: 0px 0px 43px 17px rgba(153,153,153,1);
+}
+
+.toggle{
+    padding-left: 12.5rem;
+}
+.logo{
+    padding: 1rem;
+    padding-bottom: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: large;
+    font-weight: bold;
+}
+
+.displayOff{
+    border-radius: 0.5rem 0.5rem 0 0;
+    background-color: rgb(200, 220, 221);
+    line-height: 70px;
+    text-align: right;
+}
+
+.displayOn{
+    border-radius: 0.5rem 0.5rem 0 0;
+    background-color: rgb(151, 228, 10);
+    box-shadow: 0px 0px 43px 17px rgb(151, 228, 10);
+    line-height: 70px;
+    text-align: right;
+}
+
+    .display1 {
+        border-radius: 1rem;
+        height: 15px;      
+        font-size: 15px; 
+        text-overflow: ellipsis;
+    }
+
+    .display2 {
+        height: 70px;
+        line-height: 70px;
+        padding: 16px 8px;
+        font-size: 25px;
+        width: 392px;
+        overflow: hidden;
+    }
+
+.layout{
+    width: 100%;
+}
+
+.button {
+    border: 1px solid #999;
+    border-radius: 7px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+#equal{
+    background-color: aqua;
+}
+
+#clearAll{
+    background-color: red
+}
+
+#clear{
+    background-color: orangered
+}
+
+
+.button:hover {
+    background-color: #323330;
+    color: white;
+    transition: 0.5s ease-in-out;
+}
+
+.numbers:hover {
+    background-color: #89c219;
+    text-shadow: 1px 1px rgb(255, 205, 152);
+    color: white;
+    transition: 0.5s ease-in-out;
+}
