@@ -23,29 +23,29 @@
   </head>
   <body id="fundo" class="fundoClaro">
     <div class="outterContainer">
-      <div class="logo"><i class="fas fa-robot fa-3x"></i>MrCalculator<span class="toggle"><i id="toggle" class="fas fa-toggle-off" onclick="lightOn()"></i></span></div>
+      <div class="logo"><i class="fas fa-robot fa-3x"></i>Mr.Robot Calc<span class="toggle"><i id="toggle" class="fas fa-toggle-off" onclick="lightOn()"></i></span></div>
       <div class="container">
         <div id="display" class="displayOff">
-          <div id="secondDisplay" class="display1">Visor1</div>
+          <div id="secondDisplay" class="display1">Let's do Math! </div>
           <div id="mainDisplay" class="display2"></div>
         </div>
         <table class="layout">
           <tr>
-            <td><button class="button" onclick="numberInput('(')">(</button></td>
-            <td><button class="button" onclick="numberInput(')')">)</button></td>
             <td><button id="clearAll" class="button" onclick="clearScrean()"><i class="fas fa-trash-alt"></i></button></td>
             <td>
               <button id="clear" class="button" onclick="deleteInput()">
                 <i class="fas fa-backspace"></i>
               </button>
             </td>
+            <td><button class="button operatores" onclick="numberInput('(')">(</button></td>
+            <td><button class="button operatores" onclick="numberInput(')')">)</button></td>
           </tr>
           <tr>
             <td><button class="button numbers" onclick="numberInput('7')">7</button></td>
             <td><button class="button numbers" onclick="numberInput('8')">8</button></td>
             <td><button class="button numbers" onclick="numberInput('9')">9</button></td>
             <td>
-              <button class="button" onclick="numberInput('/')"><i class="fas fa-divide"></i></button>
+              <button class="button operatores" onclick="numberInput('/')"><i class="fas fa-divide"></i></button>
             </td>
           </tr>
           <tr>
@@ -53,7 +53,7 @@
             <td><button class="button numbers" onclick="numberInput('5')">5</button></td>
             <td><button class="button numbers" onclick="numberInput('6')">6</button></td>
             <td>
-              <button class="button" onclick="numberInput('*')"><i class="fas fa-times"></i></button>
+              <button class="button operatores" onclick="numberInput('*')"><i class="fas fa-times"></i></button>
             </td>
           </tr>
           <tr>
@@ -61,14 +61,14 @@
             <td><button class="button numbers" onclick="numberInput('2')">2</button></td>
             <td><button class="button numbers" onclick="numberInput('3')">3</button></td>
             <td>
-              <button class="button" onclick="numberInput('-')"><i class="fas fa-minus"></i></button>
+              <button class="button operatores" onclick="numberInput('-')"><i class="fas fa-minus"></i></button>
             </td>
           </tr>
           <tr>
             <td><button class="button numbers" onclick="numberInput('.')">,</button></td>
             <td><button class="button numbers" onclick="numberInput('0')">0</button></td>
             <td><button id="equal" class="button" onclick="solve()"><i class="fas fa-equals"></i></button></td>
-            <td><button class="button" onclick="numberInput('+')"><i class="fas fa-plus"></i></button></td>
+            <td><button class="button operatores" onclick="numberInput('+')"><i class="fas fa-plus"></i></button></td>
           </tr>
         </table>
       </div>

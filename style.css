@@ -88,9 +88,12 @@ h1{
     font-size: 25px;
     cursor: pointer;
 }
+ .operatores {
+    background-color: #a5a1a1;
+}
 
 #equal{
-    background-color: aqua;
+    background-color: #89c219;
 }
 
 #clearAll{

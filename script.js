@@ -5,7 +5,7 @@
 let isDot = false; //inicializa a variavel de controlo para o estado do caracter "." (ponto)
 let isZero = false //inicializa a variavel de controlo para o estado do caracter "0" (algarismo zero)
 let isPlus = false; //inicializa a variavel de controlo para o estado do caracter "+" (operador soma)
-let isMinus = false; //inicializa a variavel de controlo para o estado do caracter "-" (operador menos)
+let isMinus = false; //iniciisDotaliza a variavel de controlo para o estado do caracter "-" (operador menos)
 let isMulti = false; //inicializa a variavel de controlo para o estado do caracter "*" (operador multiplicação)
 let isDiv = false; //inicializa a variavel de controlo para o estado do caracter "/" (operador divisão)
 
@@ -49,7 +49,7 @@ function lightOn() {
 
 /** Função para efeitos de testes de variaveis */
 function testes(value){
-  let visor = document.getElementById('mainDisplay').innerHTML
+  let visor = document.getElementById('mainDisplay').innerHTML;
 
   console.log("value :" + value);
   console.log("visor : "+ visor);
@@ -57,6 +57,11 @@ function testes(value){
   console.log("visor e value : "+visor+value);
   console.log("charAt : "+ visor.charAt(0));
   console.log("tamanho Real de chars no display : "+ (visor.length + 1));
+  console.log("isDot : "+ isDot);
+  console.log("isPlus : "+ isPlus);
+  console.log("isMinus : "+ isMinus);
+  console.log("isMulti : "+ isMulti);
+  console.log("isDiv : "+ isDiv);
 
 }
 
@@ -65,31 +70,22 @@ function numberInput(value) {
   let array = Array.from(value);
   let visor = document.getElementById('mainDisplay').innerHTML
 
-  // if (value != '' || typeof value !== 'undefined') {
-  //     validation_value = true;
-  //     validation_code = false;
-  // } else {
-  //   validation_value = false;
-  //   validation_code = true;
-  // }
-
   let screen = (visor+value);
   let parenthis_right = ')';
   let count_right = screen.split(parenthis_right).length - 1;
   let parenthis_left = '(';
   let count_left = screen.split(parenthis_left).length - 1;
 
-  testes(value);
-
   switch (value) {
 
     case '0':
 
-            if (visor.length >= 1 && visor.charAt(0) == 0) {
-              value = '';
-            } else {
-              document.getElementById('mainDisplay').innerHTML += value;
-            }
+        if (visor.length >= 1 && visor.charAt(0) == 0) {
+          document.getElementById('mainDisplay').innerHTML += '';
+        } else {
+          document.getElementById('mainDisplay').innerHTML += value;
+            }   
+
     break;
       
     case '1':
@@ -116,9 +112,13 @@ function numberInput(value) {
     break;
 
     case '.':
+          
+      let validation_parenthis_before_dot = visor.slice(visor.length - 1);
 
-          if (visor.length == 0 && array[0] == ".") {
-            value = "";
+          if ((visor.length == 0 && array[0] == '.') ) {
+            value = '';
+          } else if (validation_parenthis_before_dot == ')'){
+            value = '';
           }
 
           if (isDot == false) {
@@ -126,6 +126,7 @@ function numberInput(value) {
           } else {
             value = '';
           }
+
           document.getElementById('mainDisplay').innerHTML += value;
 
     break;
@@ -137,6 +138,8 @@ function numberInput(value) {
 
         if (visor.length == 1 && validation_frist_plus === "0+") {
           value = '0';
+        } else if(validation_frist_plus === "(+"){
+          value.pop();
         }
 
         if (isPlus == false) {
@@ -176,6 +179,8 @@ function numberInput(value) {
 
         if (visor.length == 1 && validation_frist_div === "0/") {
           value = '0';
+        } else if(validation_frist_div === "(/"){
+          value.pop();
         }
 
       if (isDiv == false) {
@@ -199,6 +204,8 @@ function numberInput(value) {
 
       if (visor.length == 1 && validation_frist_multi === "0*") {
         value = '0';
+      } else if(validation_frist_multi === "(*"){
+        value.pop();
       }
 
       if (isMulti == false) {
@@ -217,7 +224,7 @@ function numberInput(value) {
 
     case '(':
       isDot = false;
-      
+
       if (visor === '0' && visor.length == 1) {
         document.getElementById('mainDisplay').innerHTML = visor.slice(1) + value;
       } else {
@@ -229,215 +236,40 @@ function numberInput(value) {
     case ')':
       isDot = false;
      
-      // let check = visor.includes("("); 
-
-      // console.log(check);
-      console.log('count_right ' + count_right);
-      console.log('count_leftt ' + count_left);
-  
-      let val =  (count_left >= count_right);
-
-      console.log(val);
+      let parenthisValidation =  (count_left >= count_right);
 
       if (screen.charAt(0) == '0' && screen.charAt(1) == ')') {
-        // document.getElementById('mainDisplay').innerHTML = visor.slice(1) + value;
         document.getElementById('mainDisplay').innerHTML = '0';
-        console.log('opção 1');
-      } else if( val == true) { 
+      } else if( parenthisValidation == true) { 
         document.getElementById('mainDisplay').innerHTML = screen;
-        console.log('opção 2');
-      } else {
+      }  else {
         document.getElementById('mainDisplay').innerHTML = visor;
-        console.log('opção 3');
-        console.log(visor);
-        console.log(screen);
       }
  
       break;
 
-    default:
-      break;
+      case 'Enter':
+        isDot = false;
+
+        solve();
+        break;
+
+      case 'Backspace':
+        isDot = false;
+
+        deleteInput();
+        break;
+
+      case 'Delete':
+        isDot = false;
+
+        clearScrean();
+        break;
   }
+
+  testes(value);
   
 }
-
-// document.addEventListener(
-//   "keydown", (event) => {
-//     let code = event.key;
-//     let array = Array.from(code);
-//     let tamanho = document.getElementById('mainDisplay').innerHTML
-
-//     switch (code) {
-//       case '0':
-      
-//         isPlus = false;
-//         isMinus = false;
-//         isMulti = false;
-//         isDiv = false;
-
-//         if (tamanho.length >= 1 && array[tamanho.length - 1] == 0) {
-//           code = '';
-//         } else {
-//           document.getElementById("mainDisplay").innerHTML += code;
-//         }
-//         break;
-
-//       case '1':
-//       case '2':
-//       case '3':
-//       case '4':
-//       case '5':
-//       case '6':
-//       case '7':
-//       case '8':
-//       case '9':
-//         console.log("array:" + tamanho);
-//         console.log("size:" + tamanho.length);
-//         if (tamanho === '0' && tamanho.length == 1) {
-//           document.getElementById('mainDisplay').innerHTML = tamanho.slice(1) + code;
-//         } else {
-//           document.getElementById("mainDisplay").innerHTML += code;
-//         }
-
-//         isPlus = false;
-//         isMinus = false;
-//         isMulti = false;
-//         isDiv = false;
-//         break;
-
-//       case '.':
-//         // case 'Period':
-
-//         if (tamanho.length == 0 && array[0] == ".") {
-//           code = "";
-//         }
-
-//         if (isDot == false) {
-//           isDot = true;
-//         } else {
-//           code = '';
-//         }
-
-//         document.getElementById("mainDisplay").innerHTML += code;
-//         break;
-
-//       case '+':
-//         isDot = false;
-
-//         if (tamanho.length == 0 && array[0] == "+") {
-//           code = "";
-//         }
-
-//         if (isPlus == false) {
-//           isPlus = true;
-//         } else {
-//           value.pop();
-//         }
-//         if (tamanho === '0' && tamanho.length == 1) {
-//           document.getElementById('mainDisplay').innerHTML = tamanho.slice(1) + code;
-//         } else {
-//           document.getElementById("mainDisplay").innerHTML += code;
-//         }
-//         break;
-
-//       case '-':
-//         isDot = false;
-//         if (isMinus == false) {
-//           isMinus = true;
-//         } else {
-//           value.pop();
-//         }
-
-//         if (tamanho === '0' && tamanho.length == 1) {
-//           document.getElementById('mainDisplay').innerHTML = tamanho.slice(1) + code;
-//         } else {
-//           document.getElementById("mainDisplay").innerHTML += code;
-//         }
-//         break;
-
-//       case '/':
-//         isDot = false;
-
-//         if (tamanho.length == 0 && array[0] == "/") {
-//           code = "";
-//         }
-
-//         if (isDiv == false) {
-//           isDiv = true;
-//         } else {
-//           value.pop();
-//         }
-//         if (tamanho === '0' && tamanho.length == 1) {
-//           document.getElementById('mainDisplay').innerHTML = tamanho.slice(1) + code;
-//         } else {
-//           document.getElementById("mainDisplay").innerHTML += code;
-//         }
-//         break;
-
-//       case '*':
-//         isDot = false;
-
-//         if (tamanho.length == 0 && array[0] == "*") {
-//           code = "";
-//         }
-
-//         if (isMulti == false) {
-//           isMulti = true;
-//         } else {
-//           value.pop();
-//         }
-
-//         if (tamanho === '0' && tamanho.length == 1) {
-//           document.getElementById('mainDisplay').innerHTML = tamanho.slice(1) + code;
-//         } else {
-//           document.getElementById("mainDisplay").innerHTML += code;
-//         }
-//         break;
-
-//       case '(':
-//         isDot = false;
-
-//         if (tamanho === '0' && tamanho.length == 1) {
-//           document.getElementById('mainDisplay').innerHTML = tamanho.slice(1) + code;
-//         } else {
-//           document.getElementById("mainDisplay").innerHTML += code;
-//         }
-//         break;
-
-//       case ')':
-//         isDot = false;
-
-//         if (tamanho === '0' && tamanho.length == 1) {
-//           document.getElementById('mainDisplay').innerHTML = tamanho.slice(1) + code;
-//         } else {
-//           document.getElementById("mainDisplay").innerHTML += code;
-//         }
-//         break;
-
-//       case 'Enter':
-//         isDot = false;
-
-//         solve();
-//         break;
-
-//       case 'Backspace':
-//         isDot = false;
-
-//         deleteInput();
-//         break;
-
-//       case 'Delete':
-//         isDot = false;
-
-//         clearScrean();
-//         break;
-
-//       default:
-//         break;
-//     }
-//   },
-//   false
-// );
 
 /**
  * Função para efetuar calculos matemáticos
@@ -483,5 +315,14 @@ function deleteInput() {
   }
 }
 
-
+/**
+ * Função que recebe os inputs do teclado
+ */
+ document.addEventListener(
+  "keydown", (event) => {
+    let key_name = event.key;
+    numberInput(key_name);  //chama a função com regras todas.
+  },
+  false
+);
 
