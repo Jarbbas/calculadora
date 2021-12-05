@@ -2,48 +2,60 @@
 /**
  * Inicialização de variaveis controlo para operadores
  */
-let isDot = false; //inicializa a variavel de controlo para o estado do caracter "." (ponto)
-let isZero = false //inicializa a variavel de controlo para o estado do caracter "0" (algarismo zero)
-let isPlus = false; //inicializa a variavel de controlo para o estado do caracter "+" (operador soma)
-let isMinus = false; //iniciisDotaliza a variavel de controlo para o estado do caracter "-" (operador menos)
-let isMulti = false; //inicializa a variavel de controlo para o estado do caracter "*" (operador multiplicação)
-let isDiv = false; //inicializa a variavel de controlo para o estado do caracter "/" (operador divisão)
+let isDot = false; //inicializa a Falso a variavel de controlo para o estado do caracter "." (ponto)
+let isZero = false //inicializa a Falso a variavel de controlo para o estado do caracter "0" (algarismo zero)
+let isPlus = false; //inicializa a Falso a variavel de controlo para o estado do caracter "+" (operador soma)
+let isMinus = false; //inicializa a Falso a variavel de controlo para o estado do caracter "-" (operador menos)
+let isMulti = false; //inicializa a Falso a variavel de controlo para o estado do caracter "*" (operador multiplicação)
+let isDiv = false; //inicializa a Falso a variavel de controlo para o estado do caracter "/" (operador divisão)
 
 /** 
  * Declaração de uma variavel de controlo para controlo do "tamanho" 
- * do conteudo no ecrãn principal e ao mesmo tempo, inicializa a calculadora com o caracter 0 
+ * do conteudo no ecrã principal e ao mesmo tempo, inicializa a calculadora com o caracter 0 
  */
  let visor = document.getElementById('mainDisplay').innerHTML = '0'
 
 
 /**
- * Função para Desligar a luz do ecrã e ligar a luz do ecrã da calculadora
- * "removendo" ou "adicionando" classes de CSS de forma a criar a
-  * ilusão que o utilizador apagou a luz da sala.
-  * Escurecendo o Fundo do Browser e ilumuninando o ecrã da calculadora
+ * Função para Desligar a luz de fundo e ligar a luz do ecrã da calculadora
  */
 function lightOn() {
  /**
   * Variaveis locais, para controlo do CSS do conteudo
   */
-  let display = document.getElementById("display"); //Id do elemento HTML para o visor da calculadora
-  display.classList.toggle("displayOn");
-  let corpo = document.getElementById("fundo"); // Id do elemnto HTML body 
-  corpo.classList.toggle("fundoEscuro");
-  let onBtn = document.getElementById("toggle"); //Id do elemento que simula um botão "Toggle"
+  let display = document.getElementById("display"); //Recolhe o ID do elemento HTML para o visor da calculadora
+  display.classList.toggle("displayOn"); // troca a class do elemento pela class - "displayOn"
 
+  let corpo = document.getElementById("fundo"); // Id do elemnto HTML body 
+  corpo.classList.toggle("fundoEscuro");  // troca a class do elemento pela class - "fundoEscuro"
+  
+  let onBtn = document.getElementById("toggle"); //Recolhe o Id do elemento que simula um botão "Toggle"
+  let left_eye = document.getElementById("leftEye"); //Recolhe o ID do elemento HTML para o olho Escquerdo do Robo
+  let right_eye = document.getElementById("rightEye"); //Recolhe o ID do elemento HTML para o olho Direiro do Robo
+ 
   /**
    * Condição de controlo para alternar o icon do toggle, dependendo do Id anterior 
    * Se o elemento onBtn tiver a class "fa-toggle-off"
    * adiciona a "fa-toggle-on" e remove a "fa-toggle-off"
    * Caso contrario, remove a "fa-toggle-on" e mantêm a "fa-toggle-off"
+   * 
+   * Ao mesmo tempo adiciona ou remove as classes dos olhos do Robo(Logo) 
+   * para os mesmos se iluminarem
    */
   if (onBtn.classList.contains("fa-toggle-off")) { 
     onBtn.classList.remove("fa-toggle-off");
     onBtn.classList.add("fa-toggle-on");
+    left_eye.classList.remove("robotEyeColorLight");
+    right_eye.classList.remove("robotEyeColorLight");
+    left_eye.classList.add("robotEyeColorDark");
+    right_eye.classList.add("robotEyeColorDark");
   } else {
     onBtn.classList.remove("fa-toggle-on");
     onBtn.classList.add("fa-toggle-off");
+    left_eye.classList.add("robotEyeColorLight");
+    right_eye.classList.add("robotEyeColorLight");
+    left_eye.classList.remove("robotEyeColorDark");
+    right_eye.classList.remove("robotEyeColorDark");
   }
 }
 
@@ -51,6 +63,9 @@ function lightOn() {
 function testes(value){
   let visor = document.getElementById('mainDisplay').innerHTML;
 
+  /** Apresenta os prints na ferramenta DEV do browser 
+   * para saber o valor das variaveis (controlo )
+   */
   console.log("value :" + value);
   console.log("visor : "+ visor);
   console.log("visor.length : "+ visor.length);
@@ -65,8 +80,10 @@ function testes(value){
 
 }
 
+/** Função que vais trabalhar a lógica de todos os possiveis inputs da Calculadora  */
 function numberInput(value) {
 
+  /** Variaveis */
   let array = Array.from(value);
   let visor = document.getElementById('mainDisplay').innerHTML
 
@@ -76,18 +93,24 @@ function numberInput(value) {
   let parenthis_left = '(';
   let count_left = screen.split(parenthis_left).length - 1;
 
+  /** Inicio do ciclo switch para todas as possiveis combinações de inputs*/
   switch (value) {
 
     case '0':
 
+       /**Validação para saber se o primeiro caracter no ecrã é "Zero"  
+        * para não haver mais que algarismo zero, no inicio 00000x
+        * QUE NÃO PODE ACONTECER
+       */
         if (visor.length >= 1 && visor.charAt(0) == 0) {
-          document.getElementById('mainDisplay').innerHTML += '';
+          document.getElementById('mainDisplay').innerHTML += ''; 
         } else {
           document.getElementById('mainDisplay').innerHTML += value;
-            }   
+        }   
 
     break;
-      
+    
+    /** Condições para os restantes algarismos do 1 ao 9 */
     case '1':
     case '2':
     case '3':
@@ -97,7 +120,10 @@ function numberInput(value) {
     case '7':
     case '8':
     case '9':
-               
+      
+        /** inicialização de todos a falso, para garantir que não temos operadores antes algraismos
+         * A NÃO SER o operador menos (-) todos os outros são descartados
+         */
        isPlus = false; //inicializa a variavel de controlo para o estado do caracter "+" (operador soma)
        isMinus = false; //inicializa a variavel de controlo para o estado do caracter "-" (operador menos)
        isMulti = false; //inicializa a variavel de controlo para o estado do caracter "*" (operador multiplicação)
@@ -265,8 +291,10 @@ function numberInput(value) {
 
         clearScrean();
         break;
-  }
 
+  } //fim do cliclo switch
+
+  /**Chama a função de testes para validações */
   testes(value);
   
 }

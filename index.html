@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculadora</title>
+    <title>Mr.Robot Calculator</title>
 
     <!-- Fontawesome -->
     <link
@@ -23,10 +23,10 @@
   </head>
   <body id="fundo" class="fundoClaro">
     <div class="outterContainer">
-      <div class="logo"><i class="fas fa-robot fa-3x"></i>Mr.Robot Calc<span class="toggle"><i id="toggle" class="fas fa-toggle-off" onclick="lightOn()"></i></span></div>
+      <div class="logo"><i class="fas fa-robot fa-3x"><div class="olhos"><span id="leftEye" class="robotEyeLeft robotEyeColorLight"><span id="rightEye" class="robotEyeRight robotEyeColorLight"></span></div></i> Mr.Robot<span class="toggle"><i id="toggle" class="fas fa-toggle-off" onclick="lightOn()"></i></span></div>
       <div class="container">
         <div id="display" class="displayOff">
-          <div id="secondDisplay" class="display1">Let's do Math! </div>
+          <div id="secondDisplay" class="display1">Let's Calcultate! </div>
           <div id="mainDisplay" class="display2"></div>
         </div>
         <table class="layout">
@@ -37,8 +37,8 @@
                 <i class="fas fa-backspace"></i>
               </button>
             </td>
-            <td><button class="button operatores" onclick="numberInput('(')">(</button></td>
-            <td><button class="button operatores" onclick="numberInput(')')">)</button></td>
+            <td><button class="button operatores" onclick="numberInput('(')"><bold>(</bold></button></td>
+            <td><button class="button operatores" onclick="numberInput(')')"><bold>)</bold></button></td>
           </tr>
           <tr>
             <td><button class="button numbers" onclick="numberInput('7')">7</button></td>
