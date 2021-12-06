@@ -2,10 +2,7 @@
 
 Trata-se de um mini projeto de criar uma calculdora simples, mas com calculos e lógicas aritemética corretas.
 
-![alt text](https://github.com/[Jarbbas]/[calculadora]/blob/[main]/calculadora_lightOn.png?raw=true)
-![alt text](/home/emanuel/Documents/dockerLampStack/www/Talenter/calculadora/calculadora_lightOn.png)
-![alt text](/home/emanuel/Documents/dockerLampStack/www/Talenter/calculadora/calculadora_lightOff.png)
-
+![calculadora](https://user-images.githubusercontent.com/44001420/144843647-be382065-5234-481b-9a4b-c3a2288cda0f.png)
 
 ## Objetivo
 O objetivo deste projeto era melhorar algumas skills e lógica usando o Javascript para o desenvolvimento do mesmo.
