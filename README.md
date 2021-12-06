@@ -2,6 +2,7 @@
 
 Trata-se de um mini projeto de criar uma calculdora simples, mas com calculos e lógicas aritemética corretas.
 
+![alt text](https://github.com/[Jarbbas]/[calculadora]/blob/[main]/calculadora_lightOn.png?raw=true)
 ![alt text](/home/emanuel/Documents/dockerLampStack/www/Talenter/calculadora/calculadora_lightOn.png)
 ![alt text](/home/emanuel/Documents/dockerLampStack/www/Talenter/calculadora/calculadora_lightOff.png)
 
